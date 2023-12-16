@@ -108,9 +108,16 @@ impl Game {
       self.points += 1;
 
       let mut rng = rand::thread_rng();
-      let new_x = rng.gen_range(1..self.screen_size.0 - 1);
-      let new_y = rng.gen_range(1..self.screen_size.1 - 3);
-      self.food = (new_x, new_y);
+      loop {
+        let new_x = rng.gen_range(1..self.screen_size.0 - 1);
+        let new_y = rng.gen_range(1..self.screen_size.1 - 3);
+        let new_food = (new_x, new_y);
+
+        if !self.player.tail.contains(&new_food) {
+          self.food = new_food;
+          break;
+        }
+      }
 
       self.player.len += 1;
     }
