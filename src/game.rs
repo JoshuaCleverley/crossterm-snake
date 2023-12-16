@@ -10,6 +10,7 @@ use crossterm::{
   terminal::{self, disable_raw_mode, enable_raw_mode},
   QueueableCommand,
 };
+use rand::{random, Rng};
 
 use crate::{
   graphics::{self, draw_char},
@@ -103,7 +104,12 @@ impl Game {
 
     if self.player.pos.eq(&self.food) {
       self.points += 1;
-      // Randomly move food
+
+      let mut rng = rand::thread_rng();
+      let new_x = rng.gen_range(1..self.screen_size.0 - 1);
+      let new_y = rng.gen_range(1..self.screen_size.1 - 3);
+      self.food = (new_x, new_y);
+
       // Grow player
     }
 
