@@ -131,6 +131,7 @@ impl Game {
       self.player.len = 0;
       self.player.pos = (self.screen_size.0 / 2, self.screen_size.1 / 2);
       self.player.tail = Vec::new();
+      self.points = 0;
     }
 
     Ok(())
