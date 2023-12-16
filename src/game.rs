@@ -5,7 +5,7 @@ use std::{
 
 use crossterm::{
   cursor,
-  event::{poll, EnableMouseCapture, KeyCode, KeyEvent},
+  event::{poll, KeyCode, KeyEvent},
   execute,
   terminal::{self, disable_raw_mode, enable_raw_mode},
   QueueableCommand,
@@ -44,7 +44,6 @@ impl Game {
   }
 
   pub fn start(&mut self) -> io::Result<()> {
-    execute!(&self.stdout, EnableMouseCapture)?;
     execute!(&self.stdout, cursor::Hide)?;
     self.player.pos = (self.screen_size.0 / 2, self.screen_size.1 / 2);
     Ok(())
@@ -147,7 +146,6 @@ impl Game {
 
   fn exit(&self) -> io::Result<()> {
     execute!(&self.stdout, cursor::Show)?;
-    execute!(&self.stdout, crossterm::event::DisableMouseCapture)?;
     Ok(())
   }
 
