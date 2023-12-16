@@ -123,6 +123,17 @@ impl Game {
     }
 
     // TODO: Check if player hits wall
+
+    if self.player.pos.0 < 1
+      || self.player.pos.0 > self.screen_size.0 - 2
+      || self.player.pos.1 < 1
+      || self.player.pos.1 > self.screen_size.1 - 3
+    {
+      self.player.len = 0;
+      self.player.pos = (self.screen_size.0 / 2, self.screen_size.1 / 2);
+      self.player.tail = Vec::new();
+    }
+
     // TODO: Check if player hits tail
 
     Ok(())
