@@ -2,6 +2,7 @@ use std::io::{self, Stdout};
 
 use crate::graphics;
 
+#[derive(PartialEq)]
 pub enum Direction {
   RIGHT,
   DOWN,

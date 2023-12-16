@@ -58,16 +58,24 @@ impl Game {
             return Ok(false);
           }
           KeyCode::Right => {
-            self.player.dir = player::Direction::RIGHT;
+            if self.player.dir != player::Direction::LEFT {
+              self.player.dir = player::Direction::RIGHT;
+            }
           }
           KeyCode::Down => {
-            self.player.dir = player::Direction::DOWN;
+            if self.player.dir != player::Direction::UP {
+              self.player.dir = player::Direction::DOWN;
+            }
           }
           KeyCode::Left => {
-            self.player.dir = player::Direction::LEFT;
+            if self.player.dir != player::Direction::RIGHT {
+              self.player.dir = player::Direction::LEFT;
+            }
           }
           KeyCode::Up => {
-            self.player.dir = player::Direction::UP;
+            if self.player.dir != player::Direction::DOWN {
+              self.player.dir = player::Direction::UP;
+            }
           }
           _ => {}
         }
