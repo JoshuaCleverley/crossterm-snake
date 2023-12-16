@@ -10,7 +10,7 @@ use crossterm::{
   terminal::{self, disable_raw_mode, enable_raw_mode},
   QueueableCommand,
 };
-use rand::{random, Rng};
+use rand::Rng;
 
 use crate::{
   graphics::{self, draw_char},
@@ -35,6 +35,8 @@ impl Game {
       player: player::Player {
         dir: player::Direction::UP,
         pos: (10, 10),
+        len: 0,
+        tail: Vec::new(),
       },
       food: (10, 10),
       points: 0,
@@ -110,8 +112,11 @@ impl Game {
       let new_y = rng.gen_range(1..self.screen_size.1 - 3);
       self.food = (new_x, new_y);
 
-      // Grow player
+      self.player.len += 1;
     }
+
+    // TODO: Check if player hits wall
+    // TODO: Check if player hits tail
 
     Ok(())
   }
